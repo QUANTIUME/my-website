@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Love?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        }
+        .question-box {
+            position: absolute;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .yes-button {
+            background-color: #4caf50;
+            color: white;
+        }
+        .no-button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="question-box" id="questionBox">
+        <h1>Do you love?</h1>
+        <button class="yes-button" onclick="closeTab()">Yes</button>
+        <button class="no-button" onclick="respawn()">No</button>
+    </div>
+
+    <script>
+        function closeTab() {
+            window.close();
+        }
+
+        function respawn() {
+            const box = document.getElementById('questionBox');
+            const maxWidth = window.innerWidth - box.offsetWidth;
+            const maxHeight = window.innerHeight - box.offsetHeight;
+
+            const randomX = Math.floor(Math.random() * maxWidth);
+            const randomY = Math.floor(Math.random() * maxHeight);
+
+            box.style.left = `${randomX}px`;
+            box.style.top = `${randomY}px`;
+        }
+    </script>
+</body>
+</html>
