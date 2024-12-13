@@ -3,17 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Do You Love?</title>
+    <title>Do You Love Me?</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-            overflow: hidden;
             background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            overflow: hidden;
         }
         .question-box {
             position: absolute;
@@ -22,6 +23,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             text-align: center;
+            transition: left 0.3s, top 0.3s; /* Smooth transition for respawn */
         }
         button {
             margin: 5px;
@@ -38,20 +40,45 @@
             background-color: #f44336;
             color: white;
         }
+        .message {
+            display: none;
+            font-size: 2em;
+            color: #ff4081;
+            text-align: center;
+        }
+        .heart {
+            font-size: 3em;
+        }
     </style>
 </head>
 <body>
+    <!-- Question box -->
     <div class="question-box" id="questionBox">
-        <h1>Do you love?</h1>
-        <button class="yes-button" onclick="closeTab()">Yes</button>
+        <h1>Do you love me?</h1>
+        <button class="yes-button" onclick="loveMe()">Yes</button>
         <button class="no-button" onclick="respawn()">No</button>
     </div>
 
+    <!-- Love message and heart emoji -->
+    <div class="message" id="message">
+        <p>I love you too! <span class="heart">❤️</span></p>
+    </div>
+
     <script>
-        function closeTab() {
-            window.close();
+        // Function to close the tab and show the love message when the user clicks "Yes"
+        function loveMe() {
+            // Hide the question box
+            document.getElementById('questionBox').style.display = 'none';
+            // Show the "I love you too!" message
+            const message = document.getElementById('message');
+            message.style.display = 'block';
+            // Optional: close the tab after a short delay
+            setTimeout(() => {
+                window.close(); // Attempts to close the tab
+            }, 1000);
         }
 
+        // Function to respawn the tab in a random location when the user clicks "No"
         function respawn() {
             const box = document.getElementById('questionBox');
             const maxWidth = window.innerWidth - box.offsetWidth;
@@ -60,9 +87,12 @@
             const randomX = Math.floor(Math.random() * maxWidth);
             const randomY = Math.floor(Math.random() * maxHeight);
 
+            // Move the box to the random position
             box.style.left = `${randomX}px`;
             box.style.top = `${randomY}px`;
         }
     </script>
 </body>
 </html>
+
+     
